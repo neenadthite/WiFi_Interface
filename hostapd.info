@@ -1,0 +1,56 @@
+NAME
+     hostapd --	authenticator for IEEE 802.11 networks
+
+SYNOPSIS
+     hostapd [-BdhKtv] [-P pidfile] config-file	...
+
+DESCRIPTION
+     The hostapd utility is an authenticator for IEEE 802.11 networks.	It
+     provides full support for WPA/IEEE	802.11i	and can	also act as an IEEE
+     802.1X Authenticator with a suitable backend Authentication Server	(typi-
+     cally FreeRADIUS).	 The hostapd utility implements	the authentication
+     protocols that piggyback on top of	the normal IEEE	802.11 protocol	mecha-
+     nisms.  To	use hostapd as an authenticator, the underlying	device must
+     support some basic	functionality such as the ability to set security in-
+     formation in the 802.11 management	frames.	 Beware	that not all devices
+     have this support.
+
+     The hostapd utility is designed to	be a "daemon" program that runs	in the
+     background	and acts as the	backend	component controlling the wireless
+     connection.  It supports separate frontend	programs such as the text-
+     based frontend, hostapd_cli(8).
+
+     The following arguments must be specified on the command line:
+
+     config-file
+	     Use the settings in the specified configuration file; the name of
+	     the specified wireless interface is contained in this file.  See
+	     hostapd.conf(5) for a description of the configuration file syn-
+	     tax.
+
+	     Changes to	the configuration file can be reloaded by sending a
+	     SIGHUP to the hostapd processor or	with the hostapd_cli(8)	util-
+	     ity, using	"hostapd_cli reconfigure".
+
+OPTIONS
+     The options are as	follows:
+
+     -d	     Enable debugging messages.	 If this option	is supplied twice,
+	     more verbose messages are displayed.
+
+     -h	     Show help text.
+
+     -t	     Include timestamps	in debugging output.
+
+     -v	     Display version information on the	terminal and exit.
+
+     -B	     Detach from the controlling terminal and run as a daemon process
+	     in	the background.
+
+     -K	     Include key information in	debugging output.
+
+     -P	pidfile
+	     Store PID in pidfile.
+
+Tested example:
+hostapd -B /etc/hostapd.conf -dddt > log_file
